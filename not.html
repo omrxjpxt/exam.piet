@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Not Available - PIET</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Define Colors and Fonts */
+    :root {
+      --header-bg: #008000;
+      /* Dark Green */
+      --header-text: #ffffff;
+      --sidebar-bg: #2b3643;
+      /* Dark Slate Gray/Blue */
+      --sidebar-active: #337ab7;
+      /* Blue for active link/button */
+      --student-panel-header: #337ab7;
+      /* Blue header for panel */
+      --student-panel-info: #90ee90;
+      /* Light Green for info box */
+      --body-bg: #f9f9f9;
+      /* Light off-white background */
+      --card-border: #ccc;
+      --main-font: Arial, sans-serif;
+    }
+
+    /* --- Global Reset and Body --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--main-font);
+      background-color: var(--body-bg);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* --- 1. Header Section --- */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--header-bg);
+      padding: 10px 20px;
+      color: var(--header-text);
+      text-align: center;
+      flex-wrap: wrap;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .header-logo img {
+      width: 30px;
+      margin-right: 10px;
+    }
+
+    .header-title {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.4;
+      padding: 5px 0;
+      font-weight: bold;
+    }
+
+    .header-title p {
+      margin: 0;
+    }
+
+    /* The main container for sidebar and content */
+    .main-wrapper {
+      display: flex;
+      flex-grow: 1;
+    }
+
+    /* --- 2. Sidebar Section --- */
+    .sidebar {
+      width: 250px;
+      background-color: var(--sidebar-bg);
+      color: white;
+      padding: 10px 0;
+      flex-shrink: 0;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid #444;
+    }
+
+    .user-profile i {
+      font-size: 24px;
+      margin-right: 15px;
+      border: 1px solid white;
+      border-radius: 50%;
+      padding: 5px;
+    }
+
+    .sidebar-item {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      padding: 12px 20px;
+      transition: background-color 0.3s;
+      font-size: 14px;
+    }
+
+    .sidebar-item:hover {
+      background-color: #3e4a59;
+      color: white;
+    }
+
+    .sidebar-active {
+      background-color: var(--sidebar-active);
+      color: white !important;
+    }
+
+    .sidebar-active i {
+      margin-right: 10px;
+    }
+
+    .sidebar-item span {
+      display: block;
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 3px;
+    }
+
+    .sidebar-search {
+      padding: 10px 20px;
+      margin-bottom: 10px;
+    }
+
+    .search-box {
+      display: flex;
+      background: #232b34;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .search-box input {
+      flex-grow: 1;
+      padding: 8px 10px;
+      border: none;
+      background: #232b34;
+      color: white;
+      outline: none;
+    }
+
+    .search-box button {
+      background: #444;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* --- 3. Main Content --- */
+    .content {
+      flex-grow: 1;
+      padding: 20px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    .dashboard-header h2 {
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    .breadcrumb a {
+      color: #337ab7;
+      text-decoration: none;
+    }
+
+    .breadcrumb span {
+      color: #666;
+    }
+
+    .message-container {
+      text-align: center;
+      margin-top: 50px;
+      padding: 40px;
+      border: 1px dashed #ccc;
+      border-radius: 6px;
+      background-color: #fafafa;
+    }
+
+    .message-container i {
+      font-size: 60px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .message-container h3 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 10px;
+      font-weight: normal;
+    }
+
+    .message-container p {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .btn-back {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--sidebar-active);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-back:hover {
+      background-color: #285e8e;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="header-logo">
+      <img src="ss.png" alt="PIET Logo">
+    </div>
+    <div class="header-title">
+      <p><strong>PANIPAT INSTITUTE OF ENGINEERING AND TECHNOLOGY</strong></p>
+      <p>SAMALKHA PANIPAT</p>
+      <p>(An Autonomous Institute Affiliated to Kurukshetra University)</p>
+    </div>
+    <div class="header-logo">
+      <img src="ss.png" alt="PIET Logo">
+    </div>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="sidebar">
+
+      <div class="user-profile">
+        <i class="fas fa-user-circle"></i>
+        <span>HIMANSHU</span>
+      </div>
+
+      <a href="index.html" class="sidebar-item">Logout</a>
+
+      <div class="sidebar-search">
+        <div class="search-box">
+          <input type="text" placeholder="Search">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+
+      <a href="dashboard.html" class="sidebar-item">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+      </a>
+
+      <a href="not.html" class="sidebar-item">
+        Admit Card Reappear <span>(only for b pharma)</span>
+      </a>
+      <a href="not.html" class="sidebar-item">
+        Reappear Exam Form <span>(only for b pharma)</span>
+      </a>
+      <a href="not.html" class="sidebar-item">
+        Registration Form
+      </a>
+      <a href="result.html" class="sidebar-item">
+        Result
+      </a>
+
+    </div>
+
+    <div class="content">
+      <div class="dashboard-header">
+        <h2>Not Available</h2>
+        <div class="breadcrumb">
+          <a href="dashboard.html">Home</a> / <span>Not Available</span>
+        </div>
+      </div>
+
+      <div class="message-container">
+        <i class="fas fa-info-circle"></i>
+        <h3>Information Not Available</h3>
+        <p>This service or document is currently not available for your course/semester, or has not been released yet.</p>
+        <a href="dashboard.html" class="btn-back">Back to Dashboard</a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

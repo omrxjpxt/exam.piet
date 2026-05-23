@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PIET Exam Portal – Login to your account at Panipat Institute of Engineering &amp; Technology." />
+  <title>PIET Exam Portal – Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="page-center" role="main">
+    <div class="login-card">
+
+      <!-- ── Logo ── -->
+      <div class="logo-wrapper" aria-label="PIET logo">
+        <img
+          src="assets/logo.svg"
+          alt="PIET – Panipat Institute of Engineering &amp; Technology logo"
+          width="72"
+          height="86"
+        />
+      </div>
+
+      <!-- ── Institute Title ── -->
+      <h1 class="institute-name">
+        Panipat Institute of Engineering &amp; Technology
+      </h1>
+      <p class="institute-subtitle">Samalkha, Panipat (Autonomous Institute)</p>
+
+      <!-- ── Login Form ── -->
+      <form id="login-form" class="login-form" novalidate>
+
+        <!-- Username -->
+        <div class="input-group">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            autocomplete="username"
+            aria-label="Username"
+            required
+          />
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            autocomplete="current-password"
+            aria-label="Password"
+            required
+          />
+          <button
+            type="button"
+            id="toggle-password"
+            class="toggle-password"
+            aria-label="Show password"
+            title="Toggle password visibility"
+          >
+            <!-- Eye open (default – password is hidden) -->
+            <svg id="eye-open" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <!-- Eye closed (shown when password is visible) -->
+            <svg id="eye-closed" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"
+              style="display:none;"
+              aria-hidden="true">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8
+                       a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4
+                       c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07
+                       a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Remember Me -->
+        <div class="remember-row">
+          <input type="checkbox" id="remember-me" name="remember" />
+          <label for="remember-me">Remember me</label>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" id="btn-login" class="btn-login">
+          Login
+        </button>
+
+        <!-- Footer Links -->
+        <p class="form-links">
+          <a href="#" id="link-signup">Sign Up</a>
+          <span class="separator">|</span>
+          <a href="#" id="link-forgot">Forgot Password?</a>
+        </p>
+
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

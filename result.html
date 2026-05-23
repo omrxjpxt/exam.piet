@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result - PIET</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Define Colors and Fonts */
+    :root {
+      --header-bg: #008000;
+      /* Dark Green */
+      --header-text: #ffffff;
+      --sidebar-bg: #2b3643;
+      /* Dark Slate Gray/Blue */
+      --sidebar-active: #337ab7;
+      /* Blue for active link/button */
+      --student-panel-header: #337ab7;
+      /* Blue header for panel */
+      --student-panel-info: #90ee90;
+      /* Light Green for info box */
+      --body-bg: #f9f9f9;
+      /* Light off-white background */
+      --card-border: #ccc;
+      --main-font: Arial, sans-serif;
+    }
+
+    /* --- Global Reset and Body --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--main-font);
+      background-color: var(--body-bg);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* --- 1. Header Section --- */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--header-bg);
+      padding: 10px 20px;
+      color: var(--header-text);
+      text-align: center;
+      flex-wrap: wrap;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .header-logo img {
+      width: 30px;
+      margin-right: 10px;
+    }
+
+    .header-title {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.4;
+      padding: 5px 0;
+      font-weight: bold;
+    }
+
+    .header-title p {
+      margin: 0;
+    }
+
+    /* The main container for sidebar and content */
+    .main-wrapper {
+      display: flex;
+      flex-grow: 1;
+    }
+
+    /* --- 2. Sidebar Section --- */
+    .sidebar {
+      width: 250px;
+      background-color: var(--sidebar-bg);
+      color: white;
+      padding: 10px 0;
+      flex-shrink: 0;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid #444;
+    }
+
+    .user-profile i {
+      font-size: 24px;
+      margin-right: 15px;
+      border: 1px solid white;
+      border-radius: 50%;
+      padding: 5px;
+    }
+
+    .sidebar-item {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      padding: 12px 20px;
+      transition: background-color 0.3s;
+      font-size: 14px;
+    }
+
+    .sidebar-item:hover {
+      background-color: #3e4a59;
+      color: white;
+    }
+
+    .sidebar-active {
+      background-color: var(--sidebar-active);
+      color: white !important;
+    }
+
+    .sidebar-active i {
+      margin-right: 10px;
+    }
+
+    .sidebar-item-blue {
+      background-color: var(--sidebar-active);
+      color: white;
+    }
+
+    .sidebar-item span {
+      display: block;
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 3px;
+    }
+
+    .sidebar-search {
+      padding: 10px 20px;
+      margin-bottom: 10px;
+    }
+
+    .search-box {
+      display: flex;
+      background: #232b34;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .search-box input {
+      flex-grow: 1;
+      padding: 8px 10px;
+      border: none;
+      background: #232b34;
+      color: white;
+      outline: none;
+    }
+
+    .search-box button {
+      background: #444;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* --- 3. Main Content (Result) --- */
+    .content {
+      flex-grow: 1;
+      padding: 20px;
+      background-color: white;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+    }
+
+    .dashboard-header h2 {
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    .breadcrumb a {
+      color: #337ab7;
+      text-decoration: none;
+    }
+
+    .breadcrumb span {
+      color: #666;
+    }
+
+    /* --- Student details inside results content --- */
+    .student-details {
+      margin-bottom: 25px;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .student-details p {
+      margin: 6px 0;
+      line-height: 1.5;
+    }
+
+    /* --- Result Table Styling --- */
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 15px;
+    }
+
+    .result-table th,
+    .result-table td {
+      border: 1px solid #000;
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .result-table th {
+      font-weight: bold;
+      background-color: #f5f5f5;
+    }
+
+    /* Column Widths */
+    .col-code {
+      width: 12%;
+    }
+
+    .col-result {
+      width: 15%;
+    }
+
+    .col-exam {
+      width: 18%;
+    }
+
+    .col-date {
+      width: 22%;
+    }
+
+    .col-dmc {
+      width: 33%;
+    }
+
+    .result-table td a {
+      color: #0000ee;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .result-table td a:hover {
+      color: #551a8b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="header-logo">
+      <img src="ss.png" alt="PIET Logo">
+    </div>
+    <div class="header-title">
+      <p><strong>PANIPAT INSTITUTE OF ENGINEERING AND TECHNOLOGY</strong></p>
+      <p>SAMALKHA PANIPAT</p>
+      <p>(An Autonomous Institute Affiliated to Kurukshetra University)</p>
+    </div>
+    <div class="header-logo">
+      <img src="ss.png" alt="PIET Logo">
+    </div>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="sidebar">
+
+      <div class="user-profile">
+        <i class="fas fa-user-circle"></i>
+        <span>HIMANSHU</span>
+      </div>
+
+      <a href="index.html" class="sidebar-item">Logout</a>
+
+      <div class="sidebar-search">
+        <div class="search-box">
+          <input type="text" placeholder="Search">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+
+      <a href="dashboard.html" class="sidebar-item">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+      </a>
+
+      <a href="not.html" class="sidebar-item">
+        Admit Card Reappear <span>(only for b pharma)</span>
+      </a>
+      <a href="not.html" class="sidebar-item">
+        Reappear Exam Form <span>(only for b pharma)</span>
+      </a>
+      <a href="not.html" class="sidebar-item">
+        Registration Form
+      </a>
+      <a href="result.html" class="sidebar-item sidebar-active sidebar-item-blue">
+        Result
+      </a>
+
+    </div>
+
+    <div class="content">
+      <div class="dashboard-header">
+        <h2>Result</h2>
+        <div class="breadcrumb">
+          <a href="dashboard.html">Home</a> / <span>Result</span>
+        </div>
+      </div>
+
+      <div class="student-details">
+        <p><strong>Roll. No :</strong> 00240401020050</p>
+        <p><strong>Name of the Student :</strong> OM GANGWAR</p>
+        <p><strong>Fathers Name :</strong> RAJEEV KUMAR</p>
+        <p><strong>Mothers Name :</strong> NEERU GANGWAR</p>
+      </div>
+
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th class="col-code">Semester Code</th>
+            <th class="col-result">Result / SGPA</th>
+            <th class="col-exam">Examination Held</th>
+            <th class="col-date">Date of Result Declaration</th>
+            <th class="col-dmc">Click for DMC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-code">01</td>
+            <td class="col-result">5.8</td>
+            <td class="col-exam">JANUARY, 2025</td>
+            <td class="col-date">28-03-2025</td>
+            <td class="col-dmc"><a href="HIMANSHU RESULT.pdf">DETAILED MARKS Card</a></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
